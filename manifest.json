@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Bookmark Scraper",
-  "version": "1.0",
-  "description": "Scrapes Title, Author, and URL and sends to personal API.",
+  "version": "1.1",
+  "description": "Scrapes the current page to add details like title, url, and author to personal site as a way to share interesting media to visitors.",
   "permissions": [
     "contextMenus",
     "activeTab",
