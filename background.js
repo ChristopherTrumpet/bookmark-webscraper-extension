@@ -113,8 +113,8 @@ function scrapePageData(needsComment) {
 
   // Prioritize specific meta tags because document.title often has clutter
   let titleCandidate =
-    document.querySelector('meta[name="title"]') ||
     document.querySelector('meta[property="og:title"]') ||
+    document.querySelector('meta[name="title"]') ||
     document.querySelector('meta[name="twitter:title"]');
 
   // Extract the string content if a tag was found, otherwise use browser tab title
