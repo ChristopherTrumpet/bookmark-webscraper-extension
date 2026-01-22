@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Bookmark Scraper",
+  "version": "1.0",
+  "description": "Scrapes Title, Author, and URL and sends to personal API.",
+  "permissions": [
+    "contextMenus",
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "scraper@cmkt.dev",
+      "strict_min_version": "109.0"
+    }
+  }
+}

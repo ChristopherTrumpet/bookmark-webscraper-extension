@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { padding: 20px; font-family: sans-serif; min-width: 300px; }
+    input { width: 100%; padding: 8px; margin-bottom: 10px; box-sizing: border-box; }
+    button { padding: 8px 15px; background: #007bff; color: white; border: none; cursor: pointer; }
+    button:hover { background: #0056b3; }
+    .status { margin-top: 10px; color: green; font-size: 0.9em; }
+  </style>
+</head>
+<body>
+  <h2>Extension Settings</h2>
+  <label for="apiKey">Your Personal API Key:</label>
+  <input type="password" id="apiKey" placeholder="Paste key here...">
+  <button id="save">Save</button>
+  <div id="status" class="status"></div>
+  <script src="options.js"></script>
+</body>
+</html>
