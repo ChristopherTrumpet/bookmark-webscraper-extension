@@ -17,7 +17,6 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
     info.menuItemId === "send-to-api" ||
     info.menuItemId === "send-to-api-comment"
   ) {
-    // Check for API Key first
     const data = await browser.storage.local.get("apiKey");
     if (!data.apiKey) {
       // Alert user to set key if missing
@@ -32,7 +31,6 @@ browser.contextMenus.onClicked.addListener(async (info, tab) => {
 
     const needsComment = info.menuItemId === "send-to-api-comment";
 
-    // Inject Script to Scrape Data (and Prompt if needed)
     try {
       const results = await browser.scripting.executeScript({
         target: { tabId: tab.id },
@@ -79,20 +77,17 @@ function scrapePageData(needsComment) {
 
     if (isAcademic) return "academic";
 
-    // Check Domains first
     if (url.includes("youtube.com") || url.includes("vimeo.com"))
       return "video";
     if (url.includes("substack.com") || url.includes("medium.com"))
       return "blog";
 
-    // Check Open Graph Types
     const ogType = document.querySelector('meta[property="og:type"]')?.content;
     if (ogType) {
       if (ogType.includes("video")) return "video";
       if (ogType.includes("article")) return "article";
     }
 
-    // Check JSON-LD (Schema.org)
     const jsonLdScripts = document.querySelectorAll(
       'script[type="application/ld+json"]',
     );
@@ -106,18 +101,16 @@ function scrapePageData(needsComment) {
       } catch (e) {}
     }
 
-    return "article"; // Default fallback
+    return "article";
   }
 
   const mediaType = getMediaType();
 
-  // Prioritize specific meta tags because document.title often has clutter
   let titleCandidate =
     document.querySelector('meta[property="og:title"]') ||
     document.querySelector('meta[name="title"]') ||
     document.querySelector('meta[name="twitter:title"]');
 
-  // Extract the string content if a tag was found, otherwise use browser tab title
   let title = titleCandidate ? titleCandidate.content : document.title;
 
   // Fallback: If for some reason the meta tag was empty, go back to document.title
